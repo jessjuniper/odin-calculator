@@ -13,7 +13,7 @@ numButton.forEach((button)=> {
     button.addEventListener("click", ()=>{
         if (displayNum){
             displayNum = displayNum.concat(button.textContent);
-            firstVar = displayNum;
+            //firstVar = displayNum;
         }
         else {
             displayNum = button.textContent;
