@@ -1,3 +1,18 @@
+let firstVar = 0;
+let secondVar = 0;
+let operator = '';
+let displayNum = 5;
+
+let display = document.querySelector(".display");
+let numButton = document.querySelectorAll(".numbutton");
+let opButton = document.querySelectorAll(".opbutton");
+
+numButton.forEach((button)=> {
+    button.addEventListener("click", ()=>{
+        displayNum = parseInt(button.textContent);
+    });
+});
+
 function add(a,b) {
     return a+b;
 }
@@ -13,10 +28,6 @@ function multiply(a,b) {
 function divide(a,b) {
     return a/b;
 }
-
-let firstVar = 0;
-let secondVar = 0;
-let operator = '';
 
 function operate(firstVar, secondVar, operator) {
     if (operator == '+') {
