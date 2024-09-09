@@ -36,6 +36,7 @@ clearButton.addEventListener("click", ()=> {
     operator = null;
     firstVar = null;
     secondVar = null;
+    displayNum = null;
     display.textContent = '';
 })
 
