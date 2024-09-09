@@ -1,7 +1,7 @@
-let firstVar = 0;
-let secondVar = 0;
-let operator = '';
-let displayNum = 5;
+let firstVar;
+let secondVar;
+let operator;
+let displayNum;
 
 let display = document.querySelector(".display");
 let numButton = document.querySelectorAll(".numbutton");
@@ -30,6 +30,13 @@ equalButton.addEventListener("click", ()=>{
         display.textContent = displayNum;
     }
 });
+
+clearButton.addEventListener("click", ()=> {
+    operator = null;
+    firstVar = null;
+    secondVar = null;
+    display.textContent = '';
+})
 
 function add(a,b) {
     return a+b;
