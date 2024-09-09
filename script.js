@@ -19,19 +19,17 @@ opButton.forEach((button)=> {
     button.addEventListener("click", ()=>{
         operator = parseInt(button.textContent);
     })
-})
+});
 
-equalButton.forEach((button)=> {
-    button.addEventListener("click", ()=>{
-        if (!operator || !firstVar || !secondVar) {
-            return;
-        }
-        else {
-            displayNum = operate(firstVar,secondVar,operator);
-            display.textContent = displayNum;
-        }
-    })
-})
+equalButton.addEventListener("click", ()=>{
+    if (!operator || !firstVar || !secondVar) {
+        return;
+    }
+    else {
+        displayNum = operate(firstVar,secondVar,operator);
+        display.textContent = displayNum;
+    }
+});
 
 function add(a,b) {
     return a+b;
