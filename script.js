@@ -7,6 +7,7 @@ let display = document.querySelector(".display");
 let numButton = document.querySelectorAll(".numbutton");
 let opButton = document.querySelectorAll(".opbutton");
 let equalButton = document.querySelector(".equalbutton");
+let clearButton = document.querySelector(".clear");
 
 numButton.forEach((button)=> {
     button.addEventListener("click", ()=>{
