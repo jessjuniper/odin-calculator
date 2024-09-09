@@ -10,6 +10,7 @@ let opButton = document.querySelectorAll(".opbutton");
 numButton.forEach((button)=> {
     button.addEventListener("click", ()=>{
         displayNum = parseInt(button.textContent);
+        display.textContent = displayNum;
     });
 });
 
