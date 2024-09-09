@@ -6,6 +6,7 @@ let displayNum = 5;
 let display = document.querySelector(".display");
 let numButton = document.querySelectorAll(".numbutton");
 let opButton = document.querySelectorAll(".opbutton");
+let equalButton = document.querySelector(".equalbutton");
 
 numButton.forEach((button)=> {
     button.addEventListener("click", ()=>{
@@ -13,6 +14,24 @@ numButton.forEach((button)=> {
         display.textContent = displayNum;
     });
 });
+
+opButton.forEach((button)=> {
+    button.addEventListener("click", ()=>{
+        operator = parseInt(button.textContent);
+    })
+})
+
+equalButton.forEach((button)=> {
+    button.addEventListener("click", ()=>{
+        if (!operator || !firstVar || !secondVar) {
+            return;
+        }
+        else {
+            displayNum = operate(firstVar,secondVar,operator);
+            display.textContent = displayNum;
+        }
+    })
+})
 
 function add(a,b) {
     return a+b;
