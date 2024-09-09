@@ -11,15 +11,21 @@ let clearButton = document.querySelector(".clear");
 
 numButton.forEach((button)=> {
     button.addEventListener("click", ()=>{
-        displayNum = parseInt(button.textContent);
+        if (displayNum){
+            displayNum = displayNum.concat(button.textContent);
+            firstVar = displayNum;
+        }
+        else {
+            displayNum = button.textContent;
+        }
         display.textContent = displayNum;
     });
 });
 
 opButton.forEach((button)=> {
     button.addEventListener("click", ()=>{
-        operator = parseInt(button.textContent);
-    })
+        operator = button.textContent;
+    });
 });
 
 equalButton.addEventListener("click", ()=>{
