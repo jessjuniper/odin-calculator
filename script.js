@@ -9,42 +9,43 @@ let opButton = document.querySelectorAll(".opbutton");
 let equalButton = document.querySelector(".equalbutton");
 let clearButton = document.querySelector(".clear");
 
-numButton.forEach((button)=> {
-    button.addEventListener("click", ()=>{
-        if (displayNum){
-            displayNum = displayNum.concat(button.textContent);
-            //firstVar = displayNum;
+function display() {
+    numButton.forEach((button)=> {
+        button.addEventListener("click", ()=>{
+            if (displayNum){
+                displayNum = displayNum.concat(button.textContent);
+            }
+            else {
+                displayNum = button.textContent;
+            }
+            display.textContent = displayNum;
+        });
+    });
+    opButton.forEach((button)=> {
+        button.addEventListener("click", ()=>{
+            operator = button.textContent;
+        });
+    });
+    equalButton.addEventListener("click", ()=>{
+        if (!operator || !firstVar || !secondVar) {
+            return;
         }
         else {
-            displayNum = button.textContent;
+            displayNum = operate(firstVar,secondVar,operator);
+            display.textContent = displayNum;
         }
-        display.textContent = displayNum;
     });
-});
-
-opButton.forEach((button)=> {
-    button.addEventListener("click", ()=>{
-        operator = button.textContent;
+    
+    clearButton.addEventListener("click", ()=> {
+        operator = null;
+        firstVar = null;
+        secondVar = null;
+        displayNum = null;
+        display.textContent = '';
     });
-});
+}
 
-equalButton.addEventListener("click", ()=>{
-    if (!operator || !firstVar || !secondVar) {
-        return;
-    }
-    else {
-        displayNum = operate(firstVar,secondVar,operator);
-        display.textContent = displayNum;
-    }
-});
-
-clearButton.addEventListener("click", ()=> {
-    operator = null;
-    firstVar = null;
-    secondVar = null;
-    displayNum = null;
-    display.textContent = '';
-})
+display();
 
 function add(a,b) {
     return a+b;
