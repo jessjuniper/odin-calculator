@@ -17,6 +17,9 @@ function divide(a,b) {
 let firstNum = null;
 let secondNum = null;
 let operator = null;
+let displayNum = null;
+
+display();
 
 function operate(firstNum, secondNum, operator) {
     if (operator == "+") {
@@ -31,4 +34,15 @@ function operate(firstNum, secondNum, operator) {
     else if (operator == "/") {
         return divide(firstNum, secondNum);
     }
+}
+
+function display() {
+    let numButtons = document.querySelectorAll(".numButton");
+    let display = document.querySelector(".display");
+    numButtons.forEach((button)=>{
+        button.addEventListener("click", ()=>{
+            displayNum = button.textContent;
+            display.textContent = displayNum;
+        });
+    });
 }
