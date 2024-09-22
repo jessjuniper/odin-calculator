@@ -39,18 +39,24 @@ let displayBox = document.querySelector(".display");
 numButtons.forEach((button)=>{
     button.addEventListener("click", ()=>{
         display(button);
+        numCheck();
     });
 });
 
 function display(number) {
-    displayNum = parseInt(number.textContent);
+    if (displayNum){
+        displayNum = parseInt(displayNum.toString().concat(number.textContent));
+    }
+    else {
+        displayNum = parseInt(number.textContent);
+    }
     displayBox.textContent = displayNum;
-    numCheck();
 }
 
 let opButtons = document.querySelectorAll(".opButton");
 opButtons.forEach((button)=>{
     button.addEventListener("click", ()=>{
+        displayNum = null;
         operator = button.textContent;
     });
 });
