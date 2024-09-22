@@ -41,7 +41,7 @@ function display() {
     let display = document.querySelector(".display");
     numButtons.forEach((button)=>{
         button.addEventListener("click", ()=>{
-            displayNum = button.textContent;
+            displayNum = parseInt(button.textContent);
             display.textContent = displayNum;
             numCheck();
         });
@@ -63,3 +63,10 @@ function numCheck() {
         firstNum = displayNum;
     }
 }
+
+let equalButton = document.querySelector(".equalButton");
+equalButton.addEventListener("click", ()=>{
+    let result = operate(firstNum,secondNum,operator);
+    let display = document.querySelector(".display");
+    display.textContent = result;
+});
