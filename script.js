@@ -70,3 +70,13 @@ equalButton.addEventListener("click", ()=>{
     let display = document.querySelector(".display");
     display.textContent = result;
 });
+
+let clearButton = document.querySelector(".clearButton");
+clearButton.addEventListener("click", ()=>{
+    firstNum = null;
+    secondNum = null;
+    loperator = null;
+    displayNum = null;
+    let display = document.querySelector(".display");
+    display.textContent = "0";
+});
