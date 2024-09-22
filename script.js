@@ -19,8 +19,6 @@ let secondNum = null;
 let operator = null;
 let displayNum = null;
 
-display();
-
 function operate(firstNum, secondNum, operator) {
     if (operator == "+") {
         return add(firstNum, secondNum);
@@ -36,16 +34,18 @@ function operate(firstNum, secondNum, operator) {
     }
 }
 
-function display() {
-    let numButtons = document.querySelectorAll(".numButton");
-    let display = document.querySelector(".display");
-    numButtons.forEach((button)=>{
-        button.addEventListener("click", ()=>{
-            displayNum = parseInt(button.textContent);
-            display.textContent = displayNum;
-            numCheck();
-        });
+let numButtons = document.querySelectorAll(".numButton");
+let displayBox = document.querySelector(".display");
+numButtons.forEach((button)=>{
+    button.addEventListener("click", ()=>{
+        display(button);
     });
+});
+
+function display(number) {
+    displayNum = parseInt(number.textContent);
+    displayBox.textContent = displayNum;
+    numCheck();
 }
 
 let opButtons = document.querySelectorAll(".opButton");
@@ -77,6 +77,5 @@ clearButton.addEventListener("click", ()=>{
     secondNum = null;
     loperator = null;
     displayNum = null;
-    let display = document.querySelector(".display");
-    display.textContent = "0";
+    displayBox.textContent = "0";
 });
