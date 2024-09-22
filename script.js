@@ -46,3 +46,10 @@ function display() {
         });
     });
 }
+
+let opButtons = document.querySelectorAll(".opButton");
+opButtons.forEach((button)=>{
+    button.addEventListener("click", ()=>{
+        operator = button.textContent;
+    });
+});
