@@ -57,7 +57,16 @@ let opButtons = document.querySelectorAll(".opButton");
 opButtons.forEach((button)=>{
     button.addEventListener("click", ()=>{
         displayNum = null;
-        operator = button.textContent;
+        if (operator) {
+            let result = operate(firstNum,secondNum,operator);
+            displayBox.textContent = result;
+            firstNum = result;
+            secondNum = null;
+            operator = button.textContent;
+        }
+        else {
+            operator = button.textContent;
+        }
     });
 });
 
@@ -73,15 +82,17 @@ function numCheck() {
 let equalButton = document.querySelector(".equalButton");
 equalButton.addEventListener("click", ()=>{
     let result = operate(firstNum,secondNum,operator);
-    let display = document.querySelector(".display");
-    display.textContent = result;
+    displayBox.textContent = result;
+    firstNum = result;
+    secondNum = null;
+    operator = null;
 });
 
 let clearButton = document.querySelector(".clearButton");
 clearButton.addEventListener("click", ()=>{
     firstNum = null;
     secondNum = null;
-    loperator = null;
+    operator = null;
     displayNum = null;
     displayBox.textContent = "0";
 });
