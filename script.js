@@ -43,6 +43,7 @@ function display() {
         button.addEventListener("click", ()=>{
             displayNum = button.textContent;
             display.textContent = displayNum;
+            numCheck();
         });
     });
 }
@@ -53,3 +54,12 @@ opButtons.forEach((button)=>{
         operator = button.textContent;
     });
 });
+
+function numCheck() {
+    if (firstNum && operator) {
+        secondNum = displayNum;
+    }
+    else {
+        firstNum = displayNum;
+    }
+}
