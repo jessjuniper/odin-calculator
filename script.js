@@ -14,11 +14,13 @@ function divide(a,b) {
     return a/b;
 }
 
-let firstNum = null;
+//start with all variables at null
+let firstNum = null; 
 let secondNum = null;
 let operator = null;
 let displayNum = null;
 
+//operate function to call later
 function operate(firstNum, secondNum, operator) {
     if (operator == "+") {
         return add(firstNum, secondNum);
@@ -34,6 +36,10 @@ function operate(firstNum, secondNum, operator) {
     }
 }
 
+/*
+add click functionality to  number buttons, on click run display function
+with button text content as input, also check whether to fill firstnum or secondnum
+*/
 let numButtons = document.querySelectorAll(".numButton");
 let displayBox = document.querySelector(".display");
 numButtons.forEach((button)=>{
@@ -43,6 +49,10 @@ numButtons.forEach((button)=>{
     });
 });
 
+/*
+check for displaynum, if it already exists allow multiple numbers to be entered and stored
+else just store the single digit, always display whatever the displaynum is
+*/
 function display(number) {
     if (displayNum){
         displayNum = parseInt(displayNum.toString().concat(number.textContent));
@@ -53,10 +63,19 @@ function display(number) {
     displayBox.textContent = displayNum;
 }
 
+/*
+add click functionality to operator buttons, on click 
+check if operator exists and if secondnum is empty, if so just set operator and leave,
+else check if dividing by zero, if so set operator and display error message,
+else check if operator is already filled (and implicitly if secondnum is also filled)
+this meets criteria to run operate and does so, rounds decimal if needed, displays result
+and resets the variables except firstnum which is now the result, also sets operator,
+all else just set operator
+*/
 let opButtons = document.querySelectorAll(".opButton");
 opButtons.forEach((button)=>{
     button.addEventListener("click", ()=>{
-            displayNum = null;
+            //displayNum = null; can't remember why i added this it seems redundant
             if (operator && secondNum == null) {
                 operator = button.textContent;
             }
@@ -81,6 +100,11 @@ opButtons.forEach((button)=>{
     });
 });
 
+/*
+check which variable to fill when display is being updated
+if firstnum and operator are filled then fill secondnum, else
+just fill firstnum
+*/
 function numCheck() {
     if (firstNum && operator) {
         secondNum = displayNum;
@@ -90,6 +114,12 @@ function numCheck() {
     }
 }
 
+/*
+on equal button click check if operator is empty or if only firstnum is filled,
+if true cant operate so just exit, else if dividing by zero display error message,
+else do the operation, round decimal, display result, set firstnum to result and reset
+the other variables
+*/
 let equalButton = document.querySelector(".equalButton");
 equalButton.addEventListener("click", ()=>{
     if (!operator || (firstNum && secondNum == null)) {
@@ -111,6 +141,7 @@ equalButton.addEventListener("click", ()=>{
     }
 });
 
+//on clear button click reset all variables and display
 let clearButton = document.querySelector(".clearButton");
 clearButton.addEventListener("click", ()=>{
     firstNum = null;
