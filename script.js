@@ -89,6 +89,9 @@ equalButton.addEventListener("click", ()=>{
     }
     else {
         let result = operate(firstNum,secondNum,operator);
+        if (result % 1 != 0) {
+            result = result.toPrecision(9);
+        }
         displayBox.textContent = result;
         firstNum = result;
         secondNum = null;
