@@ -57,15 +57,23 @@ let opButtons = document.querySelectorAll(".opButton");
 opButtons.forEach((button)=>{
     button.addEventListener("click", ()=>{
             displayNum = null;
-            if (operator && !secondNum) {
+            if (operator && secondNum == null) {
                 operator = button.textContent;
+            }
+            else if (secondNum == 0 && operator == "/") {
+                operator = button.textContent;
+                displayBox.textContent = "Don't divide by zero!!"
             }
             else if (operator) {
                 let result = operate(firstNum,secondNum,operator);
+                if (result % 1 != 0) {
+                    result = result.toPrecision(9);
+                }
                 displayBox.textContent = result;
                 firstNum = result;
                 secondNum = null;
                 displayNum = null;
+                operator = button.textContent;
             }
             else {
                 operator = button.textContent;
@@ -84,8 +92,11 @@ function numCheck() {
 
 let equalButton = document.querySelector(".equalButton");
 equalButton.addEventListener("click", ()=>{
-    if (!operator || (firstNum && !secondNum)) {
+    if (!operator || (firstNum && secondNum == null)) {
         return;
+    }
+    else if (secondNum == 0 && operator == "/") {
+        displayBox.textContent = "Don't divide by zero!!"
     }
     else {
         let result = operate(firstNum,secondNum,operator);
