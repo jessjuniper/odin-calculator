@@ -19,6 +19,7 @@ let firstNum = null;
 let secondNum = null;
 let operator = null;
 let displayNum = null;
+let decMarker = false;
 
 //operate function to call later
 function operate(firstNum, secondNum, operator) {
@@ -49,16 +50,43 @@ numButtons.forEach((button)=>{
     });
 });
 
+
+/*
+add click functionality to decimal button, on click check if display already has
+decimal, if so exit, if displayNum is null or 0 set displaynum to 0.0 and set decimal marker for true
+so numbutton can add the decimal point for later input, else just concat the decimal point and also
+set decimal marker true for the next number input
+*/
+let decButton = document.querySelector(".decButton");
+decButton.addEventListener("click", ()=> {
+    if (displayNum === 0.0){
+        return;
+    }
+    else if (!displayNum){
+        displayBox.textContent = "0.";
+        displayNum = 0.0;
+        decMarker = true;
+    }
+    else if (displayNum){
+        displayBox.textContent = displayNum.toString().concat(".");
+        decMarker = true;
+    }
+});
+
 /*
 check for displaynum, if it already exists allow multiple numbers to be entered and stored
 else just store the single digit, always display whatever the displaynum is
 */
 function display(number) {
-    if (displayNum){
-        displayNum = parseInt(displayNum.toString().concat(number.textContent));
+    if (decMarker) {
+        displayNum = parseFloat(displayNum.toString().concat(".",number.textContent));
+        decMarker = false;
+    }
+    else if (displayNum){
+        displayNum = parseFloat(displayNum.toString().concat(number.textContent));
     }
     else {
-        displayNum = parseInt(number.textContent);
+        displayNum = parseFloat(number.textContent);
     }
     displayBox.textContent = displayNum;
 }
@@ -92,6 +120,7 @@ opButtons.forEach((button)=>{
                 firstNum = result;
                 secondNum = null;
                 displayNum = null;
+                decMarker = false;
                 operator = button.textContent;
             }
             else {
@@ -138,6 +167,7 @@ equalButton.addEventListener("click", ()=>{
         secondNum = null;
         operator = null;
         displayNum = null;
+        decMarker = false;
     }
 });
 
@@ -148,5 +178,6 @@ clearButton.addEventListener("click", ()=>{
     secondNum = null;
     operator = null;
     displayNum = null;
+    decMarker = false;
     displayBox.textContent = "0";
 });
