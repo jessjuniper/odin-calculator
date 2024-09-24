@@ -75,7 +75,7 @@ all else just set operator
 let opButtons = document.querySelectorAll(".opButton");
 opButtons.forEach((button)=>{
     button.addEventListener("click", ()=>{
-            //displayNum = null; can't remember why i added this it seems redundant
+            displayNum = null; //need this or display breaks
             if (operator && secondNum == null) {
                 operator = button.textContent;
             }
