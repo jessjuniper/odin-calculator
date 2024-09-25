@@ -1,0 +1,33 @@
+.display {
+    border: solid black 1px;
+    width: 202px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    padding-left: 4px;
+
+}
+
+.buttonBox {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 208px;
+}
+
+button {
+    height: 50px;
+    width: 50px;
+    margin: 1px;
+}
+
+.numButtonBox {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 156px;
+    max-height: 208px;
+}
+
+.opButtonBox {
+    display: flex;
+    flex-flow: wrap column;
+}
